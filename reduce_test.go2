@@ -18,7 +18,7 @@ func TestReduce(t *testing.T) {
 		a[i] = i + 1
 	}
 	// Compute 10!
-	out := Reduce(a, mul, 1).(int)
+	out := Reduce(a, mul, 1)
 	expect := 1
 	for i := range a {
 		expect *= a[i]
