@@ -12,6 +12,10 @@ func mul(a, b int) int {
 	return a * b
 }
 
+func addFloat(a, b float64) float64 {
+	return a + b
+}
+
 func TestReduce(t *testing.T) {
 	a := make([]int, 10)
 	for i := range a {
@@ -25,5 +29,41 @@ func TestReduce(t *testing.T) {
 	}
 	if expect != out {
 		t.Fatalf("expected %d got %d", expect, out)
+	}
+}
+
+func TestReduceNonZeroInitialNilSlice(t *testing.T) {
+	var a []float64
+	out := Reduce(a, addFloat, 273.15)
+	expect := 273.15
+	if expect != out {
+		t.Fatalf("expected %v got %v", expect, out)
+	}
+}
+
+func TestReduceNonZeroInitialEmptySlice(t *testing.T) {
+	a := []float64{}
+	out := Reduce(a, addFloat, 273.15)
+	expect := 273.15
+	if expect != out {
+		t.Fatalf("expected %v got %v", expect, out)
+	}
+}
+
+func TestReduceNonZeroInitialSingleElementSlice(t *testing.T) {
+	a := []float64{1.1}
+	out := Reduce(a, addFloat, 273.15)
+	expect := 274.25
+	if expect != out {
+		t.Fatalf("expected %v got %v", expect, out)
+	}
+}
+
+func TestReduceNonZeroInitialWithSlice(t *testing.T) {
+	a := []float64{1, 2, 3}
+	out := Reduce(a, addFloat, 273.15)
+	expect := 279.15
+	if expect != out {
+		t.Fatalf("expected %v got %v", expect, out)
 	}
 }
