@@ -5,8 +5,7 @@
 package filter
 
 // Reduce computes the reduction of the pair function across the elements of
-// the slice. (If the types of the slice and function do not correspond, Reduce
-// panics.) For instance, if the slice contains successive integers starting at
+// the slice. For instance, if the slice contains successive integers starting at
 // 1 and the function is multiply, the result will be the factorial function.
 // If the slice is empty, Reduce returns its initial value.
 // Example:
